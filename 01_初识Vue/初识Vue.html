@@ -4,7 +4,7 @@
  * @Author: Wang WenZhe
  * @Date: 2021-11-03 17:18:54
  * @LastEditors: Wang WenZhe
- * @LastEditTime: 2021-11-04 10:06:16
+ * @LastEditTime: 2021-11-04 11:11:49
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +19,7 @@
 <body>
     <!-- 准备一个容器 -->
     <div id="root">
-        <h1>Hello,{{name}}</h1>
-        <h1>年龄,{{age}}</h1>
+        <h1>Hello,{{name}},{{age}}</h1>
     </div>
 
     <script type="text/javascript">
@@ -30,14 +29,13 @@
         //如果div写的是id='root'，则用el:'#root'找。
         //如果是'class=root',用el:'.root'。
         //el：elment(元素)
-        const x = new Vue({
+        new Vue({
             el:'#root', //el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串。
             data:{//data中用于存储数据，数据供el所指定的容器去使用。值在这里是对象(只是暂时的,以后是其他的类型，->函数)。
                 name:'台湾省',
                 age:3
             }
         })
-        
     </script>
 
 </body>
