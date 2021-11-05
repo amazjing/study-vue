@@ -1,0 +1,37 @@
+<!--
+ * @Descripttion: Vue学习
+ * @version: 0.0.1
+ * @Author: Wang WenZhe
+ * @Date: 2021-11-05 16:18:44
+ * @LastEditors: Wang WenZhe
+ * @LastEditTime: 2021-11-05 16:31:09
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>何为数据代理</title>
+  </head>
+  <body>
+    <!-- 数据代理：通过一个对象代理对另一个对象中属性的操作（读/写） -->
+    <script type="text/javascript">
+      let obj = { x: 100 };
+      let obj2 = { y: 200 };
+
+      //通过obj2读到x，还能修改x值
+      Object.defineProperty(obj2, "x", {
+        //给obj2追加一个x属性
+        get() {
+          //把obj的x值返回给ojb2
+          return obj.x;
+        },
+        set(value) {
+          //想修改obj2的x值，就把obj的x值修改了
+          obj.x = value;
+        },
+      });
+    </script>
+  </body>
+</html>
