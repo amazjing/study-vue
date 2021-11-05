@@ -1,0 +1,48 @@
+<!--
+ * @Descripttion: Vue学习
+ * @version: 0.0.1
+ * @Author: Wang WenZhe
+ * @Date: 2021-11-05 10:33:11
+ * @LastEditors: Wang WenZhe
+ * @LastEditTime: 2021-11-05 10:52:39
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>理解MVVM</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    
+    <!-- 下面整个id="root"的div就是一个View -->
+    <div id="root">
+        <h1>学校名称：{{name}}</h1>
+        <h1>学校地址：{{address}}</h1>
+        <!-- <h1>测试一下1：{{1+1}}</h1>
+        <h1>测试一下2：{{$options}}</h1>
+        <h1>测试一下3：{{$emit}}</h1>
+        <h1>测试一下4：{{_c}}</h1> -->
+        </div>
+    </div>
+    
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止vue在启动时生成生产提示。
+
+    const vm = new Vue({//就是ViewModel视图模型
+        el:'#root',
+        data:{
+            //name、addres就是Model
+            name:"哔哩哔哩 (゜-゜)つロ 干杯~-bilibili",
+            address:"北京",
+        }
+    })
+    console.log(vm);
+</script>
+
+</html>
