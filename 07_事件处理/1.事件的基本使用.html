@@ -1,0 +1,55 @@
+<!--
+ * @Descripttion: 学习Vue
+ * @version: 0.0.1
+ * @Author: Wang WenZhe
+ * @Date: 2021-11-08 14:25:50
+ * @LastEditors: Wang WenZhe
+ * @LastEditTime: 2021-11-08 14:59:02
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件的基本使用</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+      <h2>欢迎来到{{name}}</h2>
+      <!-- 普通写法 -->
+      <!-- <button v-on:click="showInfo">点我提示信息</button> -->
+      <!-- 简单写法(不传参数) -->
+      <button @click="showInfo1">点我提示信息1</button>
+      <!-- 简单写法(传参数77，并传event) -->
+      <button @click="showInfo2(77,$event)">点我提示信息2</button>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    Vue.config.productionTip = false; //阻止vue在启动时生成生产提示。
+
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        name: "哔哩哔哩 (゜-゜)つロ 干杯~-bilibili",
+      },
+      methods: {
+        showInfo1(event) {
+          //console.log(event.target.innerText); 此方法可以获取到“点我提示信息”数据
+          //console.log(this);此处的this就是vm
+          alert("同学你好！");
+        },
+        showInfo2(number, event) {
+          console.log(number, event);
+          //console.log(event.target.innerText); 此方法可以获取到“点我提示信息”数据
+          //console.log(this);此处的this就是vm
+          alert("同学你好！！");
+        },
+      },
+    });
+  </script>
+</html>
