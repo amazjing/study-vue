@@ -1,0 +1,98 @@
+<!--
+ * @Descripttion: 学习Vue
+ * @version: 0.0.1
+ * @Author: Wang WenZhe
+ * @Date: 2021-11-08 15:19:14
+ * @LastEditors: Wang WenZhe
+ * @LastEditTime: 2021-11-08 16:16:52
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件的修饰符</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+      /* 设置所有元素之间都有20px的间距 */
+      * {
+        margin-top: 20px;
+      }
+      /* 设置class=demo1的样式 */
+      .demo1 {
+        height: 50px;
+        background-color: skyblue;
+      }
+      /* 设置class=box1的样式 */
+      .box1 {
+        padding: 5px;
+        background-color: skyblue;
+      }
+      /* 设置class=box2的样式 */
+      .box2 {
+        padding: 5px;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+      <h2>欢迎来到{{name}}学习</h2>
+
+      <!-- 阻止默认事件(常用) -->
+      <!-- a标签默认打开网址，方法showInfo虽然没有传参，但是会有event -->
+      <a href="https://www.bilibili.com/" @click.prevent="showInfo"
+        >点我提示信息</a
+      >
+
+      <!-- 阻止事件冒泡(常用) -->
+      <div class="demo1" @click="showInfo">
+        <button @click.stop="showInfo">点我提示信息</button>
+      </div>
+
+      <!-- 事件只触发一次(常用) -->
+      <button @click.once="showInfo">点我提示信息</button>
+
+      <!-- 使用事件的捕获模式 -->
+      <div class="box1" @click.capture="showMsg(1)">
+        div1
+        <div class="box2" @click="showMsg(2)">div2</div>
+      </div>
+
+      <!-- 只有event.target是当前操作的元素时才触发事件 -->
+      <div class="demo1" @click="showInfo">
+        <button @click="showInfo">点我提示信息</button>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
+
+    new Vue({
+      el: "#root",
+      data: {
+        name: "Ama",
+      },
+      methods: {
+        showInfo(event) {
+          //event.preventDefault()阻止默认行为。也可以在click事件改成@click.prevent;
+          //这个prevent就是事件修饰符
+          //event.preventDefault();
+
+          //阻止事件冒泡
+          //event.stopPropagation();阻止事件冒泡行为。也可以在click事件改成@click.stop;
+          //这个stop就是事件修饰符
+          //event.stopPropagation();
+
+          alert("同学你好！");
+        },
+        showMsg(msg) {
+          console.log(msg);
+        },
+      },
+    });
+  </script>
+</html>
