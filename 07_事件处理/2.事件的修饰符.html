@@ -4,7 +4,7 @@
  * @Author: Wang WenZhe
  * @Date: 2021-11-08 15:19:14
  * @LastEditors: Wang WenZhe
- * @LastEditTime: 2021-11-09 13:28:35
+ * @LastEditTime: 2021-11-09 15:13:14
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +62,12 @@
       <!-- 阻止事件冒泡(常用) -->
       <div class="demo1" @click="showInfo">
         <button @click.stop="showInfo">点我提示信息</button>
+
+        <!-- 修饰符可以连续写 -->
+        <!-- @click.stop会弹出一次，再跳转到www.bilibili.com;
+          不加stop弹出两次,再跳转到www.bilibili.com;
+          @click.stop.prevent会弹出一次，且不会发生跳转 -->
+        <!-- <a href="https://www.bilibili.com/" @click.stop.prevent="showInfo">点我提示信息</button> -->
       </div>
 
       <!-- 事件只触发一次(常用) -->

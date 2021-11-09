@@ -1,0 +1,65 @@
+<!--
+ * @Descripttion: 学习Vue
+ * @version: 0.0.1
+ * @Author: Wang WenZhe
+ * @Date: 2021-11-09 13:41:38
+ * @LastEditors: Wang WenZhe
+ * @LastEditTime: 2021-11-09 15:18:40
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>键盘事件</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!-- 准备一个容器 -->
+    <div id="root">
+      <h2>欢迎来到{{name}}学习</h2>
+      <!-- keydown是按下去某个键不用抬起来就会触发
+           keyup是按下去某个键松手后触发 -->
+      <input
+        type="text"
+        placeholder="按下回车提示输出"
+        @keydown.huiche="showInfo"
+      />
+    </div>
+  </body>
+  <script type="text/javascript">
+    Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
+
+    //如果指定按某个键触发，比如按住“ctrl”加“Y”触发，把“Y”换成其它键不管用，则可以写成“@keyup.ctrl.y”
+
+    //定义了一个别名按键,属于自定义的键名，将“huiche”与enter的编码13绑定;
+    Vue.config.keyCodes.huiche = 13;
+
+    new Vue({
+      el: "#root",
+      data: {
+        name: "Ama",
+      },
+      methods: {
+        //方法里的参数e，是默认传的，就是event
+        showInfo(e) {
+          //console.log(e.keyCode);该方法获取键盘编码;回车的编码是13;
+          //如果按下的不是回车，那么就会执行return，后面的console就不会执行。只用按下回车键才会执行console.log
+          //如果使用的是@keyup.enter。则不需要if判断，就会实现只有按下回车键才会执行输出console.log。
+          //   if (e.keyCode !== 13) {
+          //     return;
+          //   }
+
+          //e.key是获取按键的名称;比如你按Enter，则输出Enter。
+          //如果按的是改变字母大小写的按键CapsLock，需要在@keyup.caps.lock;对于字母较长的第一个与第二个字母都需要小写
+          //第一个字母与第二个字母之间用“-”;
+          //console.log(e.key, e.keyCode);
+
+          console.log(e.target.value); //输出输入框填写的全部值。
+        },
+      },
+    });
+  </script>
+</html>
