@@ -1,0 +1,56 @@
+<!--
+ * @Descripttion: 学习Vue
+ * @version: 0.0.1
+ * @Author: Wang WenZhe
+ * @Date: 2021-11-10 09:56:28
+ * @LastEditors: Wang WenZhe
+ * @LastEditTime: 2021-11-10 11:11:32
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>姓名案例_计算属性实现</title>
+  <!-- 引入Vue -->
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+  <!-- 准备好有一个容器 -->
+  <div id="root">
+    姓：<input type="text" v-model='firstName' /></br> 
+    名：<input type="text" v-model='lastName' /></br> 
+    全名：<span>{{fullName}}</span></br> 
+  </div>
+</body>
+<script type="text/javascript">
+  Vue.config.productionTip = false; //阻止vue在启动时生成上产提示。
+
+  const vm = new Vue({
+      el:'#root',
+      data: {
+          firstName:"张",
+          lastName:"三"
+      },
+      computed:{//计算属性
+          fullName:{
+              //get有什么作用？当有人读取fullName时，get就会被调用，且返回值就作为fullName的值
+              //get什么时候调用？1.初次读取fullName时。2.所依赖的数据发生变化时。
+              get(){
+                console.log("get被调用了");
+                  //console.log(this);此处的this是vm
+                  return this.firstName + '-' + this.lastName
+              },
+              //set什么时候调用?当fullName被修改时。
+              set(value){
+                  console.log('set',value)
+                  const arr = value.split('-')
+                  this.firstName = arr[0]
+                  this.lastName = arr[1]
+              }
+          }
+      }
+  })
+</script>
+</html>

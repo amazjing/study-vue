@@ -1,0 +1,40 @@
+<!--
+ * @Descripttion: 学习Vue
+ * @version: 0.0.1
+ * @Author: Wang WenZhe
+ * @Date: 2021-11-10 09:23:28
+ * @LastEditors: Wang WenZhe
+ * @LastEditTime: 2021-11-10 09:46:39
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>姓名案例+_插值语法实现</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!-- 准备好有一个容器 -->
+    <!-- "全名"实时随着"姓"和"名"页面输入框的值发生变化;
+        {{firstName.slice(0,3)}}-{{lastName}} 只获取"姓"输入框里的前三位，"张xx-三"-->
+    <div id="root">
+      姓：<input type="text" v-model='firstName' /></br> 
+      名：<input type="text" v-model='lastName' /></br> 
+      全名：<span>{{firstName.slice(0,3)}}-{{lastName}}</span>
+    </div>
+  </body>
+  <script type="text/javascript">
+    Vue.config.productionTip = false; //阻止vue在启动时生成上产提示。
+
+    new Vue({
+        el:'#root',
+        data: {
+            firstName:"张",
+            lastName:"三"
+        },
+    })
+  </script>
+</html>
