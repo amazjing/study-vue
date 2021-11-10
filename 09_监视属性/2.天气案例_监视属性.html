@@ -1,0 +1,81 @@
+<!--
+ * @Descripttion: 学习Vue
+ * @version: 0.0.1
+ * @Author: Wang WenZhe
+ * @Date: 2021-11-10 15:29:47
+ * @LastEditors: Wang WenZhe
+ * @LastEditTime: 2021-11-10 16:34:41
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>天气案例_监视属性</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <!-- 实现效果：当在页面点击“切换天气”，页面中的“凉爽”就变成了“炎热”，再点击按钮就重新变成“凉爽”。
+                在“凉爽”和“炎热”之间来回切换。
+                每次切换都会在console捕获到，显示原来是什么现在是什么 -->
+  <body>
+    <div id="root">
+      <h2>今天天气很{{info}}</h2>
+      <button @click="changeWeather">切换天气</button>
+    </div>
+  </body>
+  <script type="text/javascript">
+    Vue.config.productionTip = false; //阻止vue在启动时生成生产提示。
+
+    const vm = new Vue({
+      el: "#root",
+      data: {
+        isHot: true,
+      },
+      computed: {
+        //计算属性
+        info() {
+          //“isHot ? "炎热" : "凉爽"”前面必须加“this”,只有通过vm才能拿到。
+          return this.isHot ? "炎热" : "凉爽";
+        },
+      },
+      methods: {
+        changeWeather() {
+          this.isHot = !this.isHot;
+        },
+      },
+      /*watch: {
+        watch监视属性;它的值是一个配置对象
+
+        watch不仅可以监听到data里面的“isHot”，也可以监听到computed里面的“info”
+
+        通过监听data里面的“isHot”实现
+        isHot: {
+          immediate: true, //默认false;作用：初始化时让handler调用一下
+          //handler函数什么时候调用？当isHot发生改变时。
+          handler(newValue, oldValue) {
+            console.log("isHot被修改了", newValue, oldValue);
+          },
+        },
+
+        通过监听computed里面的“info”实现
+        info: {
+          immediate: true, //默认false;作用：初始化时让handler调用一下
+          //handler函数什么时候调用？当isHot发生改变时。
+          handler(newValue, oldValue) {
+            console.log("info被修改了", newValue, oldValue); //newValue是新的值;oldValue是旧的值
+          },
+        },
+      },*/
+    });
+
+    vm.$watch("isHot", {
+      immediate: true, //默认false;作用：初始化时让handler调用一下
+      //handler函数什么时候调用？当isHot发生改变时。
+      handler(newValue, oldValue) {
+        console.log("isHot被修改了", newValue, oldValue);
+      },
+    });
+  </script>
+</html>
